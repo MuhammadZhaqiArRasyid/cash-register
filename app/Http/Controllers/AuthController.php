@@ -49,10 +49,10 @@ protected function create(array $data)
             'password' => 'required',
         ]);
 
-        // if (Auth::attempt($request->only('email', 'password'))) {
-        //     $request->session()->regenerate();
+        if (Auth::attempt($request->only('email', 'password'))) {
+            $request->session()->regenerate();
             return redirect()->route('dashboard');
-        // }
+        }
 
         return back()->with('error', 'Email atau password salah.');
     }
