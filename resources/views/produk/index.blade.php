@@ -1,6 +1,7 @@
-@include('layouts.header')
+@extends('layouts.header')
 @section('title', 'Data Produk')
 
+@section('content')
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -87,14 +88,18 @@
             font-size: 14px;
         }
 
-        .produk-actions a, .produk-actions button {
+        .produk-actions a,
+        .produk-actions button {
             font-size: 13px;
             text-decoration: none;
             border: none;
             background: none;
             cursor: pointer;
-            color: #2980b9;
             margin-right: 8px;
+        }
+
+        .produk-actions a {
+            color: #2980b9;
         }
 
         .produk-actions button {
@@ -129,23 +134,24 @@
     <h2>Data Produk</h2>
 
     <div class="produk-wrapper">
+        <!-- Kolom Makanan -->
         <div class="produk-column">
             <h3>🍔 Makanan</h3>
             <div class="produk-grid">
                 @forelse($makanan as $m)
                     <div class="produk-card">
-                        <img src="{{ asset('uploads/produk/'.$m->gambar ?? 'default.png') }}" class="produk-img" alt="">
+                        <img src="{{ asset('uploads/produk/' . ($m->gambar ?? 'default.png')) }}" class="produk-img" alt="{{ $m->nama_produk }}">
                         <div class="produk-info">
                             <h4>{{ $m->nama_produk }}</h4>
                             <p>Harga: Rp {{ number_format($m->harga, 0, ',', '.') }}</p>
-                                <div class="produk-actions">
-                                    <a href="{{ route('produk.edit', $m->id_produk) }}">Edit</a>
-                                    <form action="{{ route('produk.destroy', $m->id_produk) }}" method="POST" style="display:inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
-                                    </form>
-                                </div>
+                            <div class="produk-actions">
+                                <a href="{{ route('produk.edit', $m->id_produk) }}">Edit</a>
+                                <form action="{{ route('produk.destroy', $m->id_produk) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" onclick="return confirm('Yakin ingin menghapus produk ini?')">Hapus</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 @empty
@@ -154,25 +160,24 @@
             </div>
         </div>
 
+        <!-- Kolom Minuman -->
         <div class="produk-column">
             <h3>🥤 Minuman</h3>
             <div class="produk-grid">
                 @forelse($minuman as $m)
                     <div class="produk-card">
-                        <img src="{{ asset('uploads/produk/'.$m->gambar ?? 'default.png') }}" class="produk-img" alt="">
+                        <img src="{{ asset('uploads/produk/' . ($m->gambar ?? 'default.png')) }}" class="produk-img" alt="{{ $m->nama_produk }}">
                         <div class="produk-info">
                             <h4>{{ $m->nama_produk }}</h4>
                             <p>Harga: Rp {{ number_format($m->harga, 0, ',', '.') }}</p>
-
-                                <div class="produk-actions">
-                                    <a href="{{ route('produk.edit', $m->id_produk) }}">Edit</a>
-                                    <form action="{{ route('produk.destroy', $m->id_produk) }}" method="POST" style="display:inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
-                                    </form>
-                                </div>
-
+                            <div class="produk-actions">
+                                <a href="{{ route('produk.edit', $m->id_produk) }}">Edit</a>
+                                <form action="{{ route('produk.destroy', $m->id_produk) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" onclick="return confirm('Yakin ingin menghapus produk ini?')">Hapus</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 @empty
@@ -182,11 +187,11 @@
         </div>
     </div>
 
-        <div style="text-align:center;">
-            <a href="{{ route('produk.create') }}" class="tambah-btn">➕ Tambah Produk</a>
-        </div>
-
+    <div style="text-align:center;">
+        <a href="{{ route('produk.create') }}" class="tambah-btn">➕ Tambah Produk</a>
+    </div>
 
 @include('layouts.footer')
 </body>
 </html>
+@endsection

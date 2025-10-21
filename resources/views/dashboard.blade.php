@@ -43,7 +43,7 @@ body {
 .navbar h2 {
     font-size: 1.25rem;
     font-weight: 600;
-    color: #1d4ed8; /* biru lembut */
+    color: #1d4ed8;
 }
 
 /* ================================================
@@ -84,6 +84,7 @@ body {
     padding: 1.5rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: center;
 }
 
 .card:hover {
@@ -126,6 +127,7 @@ h3 {
     font-weight: 600;
     color: #222;
     margin-bottom: 1rem;
+    text-align: center; /* ✅ Judul tabel di tengah */
 }
 
 .table-container {
@@ -134,6 +136,9 @@ h3 {
     border-radius: 12px;
     overflow-x: auto;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin: 0 auto;
+    width: 95%; /* ✅ Table sedikit lebih besar dan tengah */
+    max-width: 1000px;
 }
 
 table {
@@ -147,10 +152,10 @@ thead {
 }
 
 th, td {
-    padding: 0.9rem 1rem;
-    text-align: left;
+    padding: 1rem;
+    text-align: center; /* ✅ Konten tengah */
     border-bottom: 1px solid #e5e7eb;
-    font-size: 0.95rem;
+    font-size: 1rem;
 }
 
 tbody tr:nth-child(even) {
@@ -191,11 +196,37 @@ td strong {
     .navbar {
         padding: 0.75rem 1rem;
     }
+
     .container {
         padding: 0 1rem;
     }
+
     .summary {
         grid-template-columns: 1fr;
+    }
+
+    .card {
+        text-align: center;
+    }
+
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    th, td {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+        text-align: center;
+    }
+
+    h3 {
+        font-size: 1rem;
     }
 }
 </style>

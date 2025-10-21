@@ -6,7 +6,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
-        /* === Transaksi Page - Simple Elegant Version === */
+        /* === TRANSAKSI PAGE — Clean Responsive Design === */
         * {
             margin: 0;
             padding: 0;
@@ -47,7 +47,7 @@
             font-size: 15px;
         }
 
-        /* Search */
+        /* === Search Bar === */
         .search-bar {
             text-align: center;
             margin-bottom: 25px;
@@ -61,6 +61,7 @@
             border: 1px solid #cbd5e1;
             font-family: 'Poppins', sans-serif;
             font-size: 14px;
+            transition: 0.2s;
         }
 
         .search-bar input:focus {
@@ -69,10 +70,10 @@
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
         }
 
-        /* Produk */
+        /* === Produk Grid === */
         .produk-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 20px;
             margin-bottom: 25px;
         }
@@ -85,12 +86,13 @@
             background: #fafafa;
             border: 1px solid #e5e7eb;
             border-radius: 10px;
-            transition: 0.2s;
+            transition: 0.2s ease;
         }
 
         .produk-card:hover {
             background: #f0f9ff;
             border-color: #93c5fd;
+            transform: translateY(-2px);
         }
 
         .produk-card img {
@@ -98,10 +100,12 @@
             height: 90px;
             border-radius: 8px;
             object-fit: cover;
+            flex-shrink: 0;
         }
 
         .produk-info {
             flex: 1;
+            min-width: 0;
         }
 
         .produk-info h4 {
@@ -109,6 +113,7 @@
             font-size: 16px;
             color: #1e293b;
             font-weight: 600;
+            overflow-wrap: break-word;
         }
 
         .produk-info p {
@@ -123,6 +128,7 @@
             text-align: center;
             border: 1px solid #cbd5e1;
             border-radius: 6px;
+            font-size: 14px;
         }
 
         .subtotal {
@@ -132,7 +138,7 @@
             margin-top: 6px;
         }
 
-        /* Summary */
+        /* === Summary === */
         .summary {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
@@ -148,7 +154,7 @@
             color: #1e3a8a;
         }
 
-        /* Buttons */
+        /* === Buttons === */
         .btn-transaksi {
             display: inline-block;
             background: #3b82f6;
@@ -181,15 +187,36 @@
             background: #374151;
         }
 
+        /* === RESPONSIVE === */
         @media (max-width: 768px) {
             .wrapper {
                 margin: 20px;
                 padding: 20px;
             }
+
+            .produk-card {
+                flex-direction: column;
+                align-items: flex-start;
+                text-align: left;
+            }
+
+            .produk-card img {
+                width: 100%;
+                height: 160px;
+            }
+
+            .produk-info input[type="number"] {
+                width: 100%;
+            }
+
+            .btn-transaksi {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
+
 @include('layouts.header')
 @section('title', 'Transaksi')
 
