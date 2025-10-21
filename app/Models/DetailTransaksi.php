@@ -19,4 +19,10 @@ class DetailTransaksi extends Model
         'qty',
         'subtotal'
     ];
+
+    // 🔹 Tambahkan relasi ke tabel transaksi
+    public function transaksi()
+    {
+        return $this->belongsTo(Transaksi::class, 'id_transaksi', 'id_transaksi');
+    }
 }
