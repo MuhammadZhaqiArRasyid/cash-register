@@ -257,6 +257,11 @@ td strong {
             <h3>🍽️ Menu Terjual</h3>
             <p>{{ $totalMenuTerjual }}</p>
         </div>
+
+        <div class="card card-purple">
+            <h3>💸 Pajak Dipungut</h3>
+            <p>Rp {{ number_format($totalPajak, 0, ',', '.') }}</p>
+        </div>
     </div>
 
     <!-- 🔹 Tabel Transaksi -->

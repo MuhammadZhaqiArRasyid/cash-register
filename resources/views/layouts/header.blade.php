@@ -183,7 +183,7 @@
 
     <a href="{{ route('transaksi.index') }}">🧾 Transaksi</a>
     
-    <a href="{{ route('laporan.index') }}">🧾 Laporan</a>
+    <a href="{{ route('laporan.index') }}">🖼️ Laporan</a>
 
     <form action="{{ route('logout') }}" method="POST" style="margin:0;">
         @csrf

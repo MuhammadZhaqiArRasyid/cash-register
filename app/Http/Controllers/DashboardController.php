@@ -22,11 +22,14 @@ class DashboardController extends Controller
         // Ambil 5 transaksi terbaru
         $transaksiTerbaru = Transaksi::orderBy('tanggal','desc')->limit(5)->get();
 
+        $totalPajak = Transaksi::sum('pajak'); // contoh field pajak
+
         // Kirim ke view
         return view('dashboard', compact(
             'totalPendapatan',
             'totalTransaksi',
             'totalMenuTerjual',
+            'totalPajak',
             'transaksiTerbaru'
         ));
     }
