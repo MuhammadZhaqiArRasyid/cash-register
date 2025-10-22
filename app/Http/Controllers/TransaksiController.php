@@ -69,7 +69,7 @@ class TransaksiController extends Controller
             'total'   => $total,
         ]);
 
-    // ✅ Simpan detail transaksi & kurangi stok produk
+    // ✅ Simpan detail transaksi 
     foreach ($produkDipilih as $item) {
         DetailTransaksi::create([
             'id_transaksi' => $transaksi->id_transaksi,

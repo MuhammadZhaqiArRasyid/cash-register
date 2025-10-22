@@ -1,13 +1,14 @@
+<!-- belum sempurna -->
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Cash Register</title>
+    <title>Lupa Password - Cash Register</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
-        /* --- Style Dasar --- */
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -30,7 +31,6 @@
             animation: fadeIn 1s ease-in-out;
         }
 
-        /* --- Bagian Kiri (Gambar / Ilustrasi) --- */
         .left {
             background: linear-gradient(135deg, #dbdbdbff, #6366f1);
             color: white;
@@ -60,7 +60,6 @@
             opacity: 0.9;
         }
 
-        /* --- Bagian Kanan (Form Login) --- */
         .right {
             flex: 1;
             padding: 50px 60px;
@@ -174,41 +173,33 @@
     <div class="container">
         <!-- Bagian Kiri -->
         <div class="left">
-            <img src="https://cdn-icons-png.flaticon.com/512/679/679922.png" alt="Cash   Icon">
-            <h1>Selamat Datang</h1>
-            <p>Kelola transaksi dan stok produk Anda dengan mudah 💰</p>
+            <img src="https://cdn-icons-png.flaticon.com/512/679/679922.png" alt="Forgot Icon">
+            <h1>Lupa Password?</h1>
+            <p>Masukkan email kamu dan atur ulang password akun dengan mudah 🔐</p>
         </div>
 
         <!-- Bagian Kanan -->
         <div class="right">
-            <h2>Login Akun</h2>
+            <h2>Lupa Password</h2>
 
-            @if(session('error'))
-                <div class="error">{{ session('error') }}</div>
+            @if ($errors->any())
+                <div class="error">{{ $errors->first() }}</div>
             @endif
 
-            <form action="{{ route('login.post') }}" method="POST">
+            <form method="POST" action="{{ route('password.check') }}">
                 @csrf
                 <div class="input-group">
                     <i class="fas fa-envelope"></i>
                     <input type="email" name="email" placeholder="Masukkan Email" required>
                 </div>
 
-                <div class="input-group">
-                    <i class="fas fa-lock"></i>
-                    <input type="password" name="password" placeholder="Masukkan Password" required>
-                </div>
-
-                <button type="submit">Masuk Sekarang</button>
+                <button type="submit">Lanjutkan</button>
             </form>
-            <p>
-                <a href="{{ route('password.request') }}">Lupa Password?</a>
-            </p>
-            <p>Belum punya akun? <a href="{{ route('register') }}">Daftar di sini</a></p>
+
+            <p><a href="{{ route('login') }}">Kembali ke Login</a></p>
         </div>
     </div>
 
-    <!-- FontAwesome Icons -->
     <script src="https://kit.fontawesome.com/a2d9b6d66b.js" crossorigin="anonymous"></script>
 </body>
 </html>
