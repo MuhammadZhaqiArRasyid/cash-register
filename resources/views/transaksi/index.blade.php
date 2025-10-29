@@ -3,265 +3,402 @@
 <head>
     <meta charset="UTF-8">
     <title>Transaksi | Cash Register</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* === TRANSAKSI PAGE — Clean Responsive Design === */
+        /* ================================================
+           TRANSAKSI PAGE — Clean & Modern
+           ================================================ */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
+        body.transaksi-page {
             font-family: 'Poppins', sans-serif;
-            background-color: #f4f6f8;
-            color: #2d3748;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            color: #1e293b;
             min-height: 100vh;
         }
 
-        .wrapper {
-            max-width: 1100px;
-            margin: 40px auto;
-            background: #fff;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        .transaksi-container {
+            max-width: 1200px;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
         }
 
-        h2 {
+        .transaksi-header {
             text-align: center;
-            color: #1e3a8a;
-            margin-bottom: 25px;
-            font-size: 1.8rem;
-            font-weight: 600;
+            margin-bottom: 2rem;
         }
 
+        .transaksi-header h2 {
+            font-size: 2rem;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .transaksi-header p {
+            color: #64748b;
+            font-size: 1.05rem;
+        }
+
+        .transaksi-wrapper {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Alert */
         .alert-success {
-            background: #e6fffa;
-            color: #065f46;
-            border-left: 5px solid #10b981;
-            padding: 12px 16px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-size: 15px;
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
         }
 
-        /* === Search Bar === */
+        /* Search Bar */
         .search-bar {
-            text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 2rem;
         }
 
         .search-bar input {
             width: 100%;
-            max-width: 600px;
-            padding: 10px 14px;
-            border-radius: 8px;
-            border: 1px solid #cbd5e1;
+            padding: 0.9rem 1.2rem;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
             font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-            transition: 0.2s;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            background: #f8fafc;
         }
 
         .search-bar input:focus {
             outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+            border-color: #8b5cf6;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
         }
 
-        /* === Produk Grid === */
+        .search-bar input::placeholder {
+            color: #94a3b8;
+        }
+
+        /* Produk Grid */
         .produk-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .produk-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 1.25rem;
+            transition: all 0.2s ease;
             display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px;
-            background: #fafafa;
-            border: 1px solid #e5e7eb;
-            border-radius: 10px;
-            transition: 0.2s ease;
+            flex-direction: column;
         }
 
         .produk-card:hover {
-            background: #f0f9ff;
-            border-color: #93c5fd;
-            transform: translateY(-2px);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-color: #cbd5e1;
+        }
+
+        .produk-card-content {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
         }
 
         .produk-card img {
-            width: 90px;
-            height: 90px;
-            border-radius: 8px;
+            width: 100px;
+            height: 100px;
+            border-radius: 12px;
             object-fit: cover;
             flex-shrink: 0;
+            background: #e2e8f0;
         }
 
         .produk-info {
             flex: 1;
-            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
         }
 
-        .produk-info h4 {
-            margin: 0;
-            font-size: 16px;
+        .produk-checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .produk-checkbox-label input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #8b5cf6;
+        }
+
+        .produk-checkbox-label strong {
+            font-size: 1rem;
             color: #1e293b;
             font-weight: 600;
-            overflow-wrap: break-word;
         }
 
-        .produk-info p {
-            margin: 3px 0;
-            font-size: 14px;
-            color: #475569;
+        .produk-price {
+            color: #10b981;
+            font-weight: 600;
+            font-size: 0.95rem;
         }
 
-        .produk-info input[type="number"] {
-            width: 70px;
-            padding: 5px;
+        .produk-qty-section {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .produk-qty-section label {
+            font-size: 0.9rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .produk-qty-section input[type="number"] {
+            width: 80px;
+            padding: 0.5rem;
             text-align: center;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            font-size: 14px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-family: 'Poppins', sans-serif;
+            background: #ffffff;
+        }
+
+        .produk-qty-section input[type="number"]:focus {
+            outline: none;
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
         }
 
         .subtotal {
             font-weight: 600;
-            font-size: 14px;
-            color: #2563eb;
-            margin-top: 6px;
-        }
-
-        /* === Summary === */
-        .summary {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
+            font-size: 1rem;
+            color: #3b82f6;
+            padding: 0.75rem;
+            background: #eff6ff;
             border-radius: 10px;
             text-align: center;
-            padding: 20px;
-            margin-top: 15px;
+        }
+
+        /* Summary */
+        .summary {
+            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            border-radius: 16px;
+            text-align: center;
+            padding: 1rem 1.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
         }
 
         .summary p {
-            font-size: 18px;
-            font-weight: 600;
-            color: #1e3a8a;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
-        /* === Buttons === */
+        /* Buttons */
+        .form-actions {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
         .btn-transaksi {
-            display: inline-block;
-            background: #3b82f6;
+            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
             color: white;
             border: none;
-            padding: 12px 28px;
-            border-radius: 8px;
-            font-size: 15px;
-            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: 0.2s;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+            font-family: 'Poppins', sans-serif;
         }
 
         .btn-transaksi:hover {
-            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
         }
 
         .back-link {
-            display: inline-block;
-            background: #6b7280;
-            color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: #f8fafc;
+            color: #64748b;
             text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-            transition: 0.2s;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
         }
 
         .back-link:hover {
-            background: #374151;
+            background: #e2e8f0;
+            color: #1e293b;
         }
 
-        /* === RESPONSIVE === */
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #94a3b8;
+            font-style: italic;
+        }
+
+        /* ================================================
+           RESPONSIVE
+           ================================================ */
+
         @media (max-width: 768px) {
-            .wrapper {
-                margin: 20px;
-                padding: 20px;
+            .transaksi-container {
+                margin: 2rem auto;
+                padding: 0 1rem;
             }
 
-            .produk-card {
+            .transaksi-header h2 {
+                font-size: 1.6rem;
+            }
+
+            .transaksi-wrapper {
+                padding: 1.5rem;
+            }
+
+            .produk-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .produk-card-content {
                 flex-direction: column;
-                align-items: flex-start;
-                text-align: left;
+                align-items: center;
+                text-align: center;
             }
 
             .produk-card img {
                 width: 100%;
-                height: 160px;
+                max-width: 200px;
+                height: 150px;
             }
 
-            .produk-info input[type="number"] {
-                width: 100%;
+            .produk-qty-section {
+                justify-content: center;
+            }
+
+            .produk-qty-section input[type="number"] {
+                width: 100px;
+            }
+
+            .summary p {
+                font-size: 1.1rem;
+            }
+
+            .form-actions {
+                flex-direction: column;
             }
 
             .btn-transaksi {
                 width: 100%;
             }
+            
+            .back-link {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .transaksi-header h2 {
+                font-size: 1.4rem;
+            }
+
+            .summary p {
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
-<body>
+<body class="transaksi-page">
 
 @include('layouts.header')
 @section('title', 'Transaksi')
 
-<div class="wrapper">
-    <h2>🧾 Buat Transaksi</h2>
-
-    @if(session('success'))
-        <div class="alert-success">{{ session('success') }}</div>
-    @endif
-
-    <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Cari produk berdasarkan nama...">
+<div class="transaksi-container">
+    <div class="transaksi-header">
+        <h2>🧾 Buat Transaksi</h2>
+        <p>Pilih produk dan tentukan jumlah pembelian</p>
     </div>
 
-    <form id="formTransaksi" action="{{ route('transaksi.store') }}" method="POST">
-        @csrf
-        <div class="produk-grid" id="produkGrid">
-            @foreach($produk as $p)
-                <div class="produk-card" data-harga="{{ $p->harga }}" data-nama="{{ strtolower($p->nama_produk) }}">
-                    <img src="{{ asset('uploads/produk/'.$p->gambar ?? 'default.png') }}" alt="{{ $p->nama_produk }}">
-                    <div class="produk-info">
-                        <label>
-                            <input type="checkbox" name="produk_id[]" value="{{ $p->id_produk }}">
-                            <strong>{{ $p->nama_produk }}</strong>
-                        </label>
-                        <p>Harga: Rp {{ number_format($p->harga, 0, ',', '.') }}</p>
-                        <label>Qty:</label>
-                        <input type="number" name="qty[{{ $p->id_produk }}]" class="qty" min="0" value="0">
+    <div class="transaksi-wrapper">
+        @if(session('success'))
+            <div class="alert-success">✓ {{ session('success') }}</div>
+        @endif
+
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="🔍 Cari produk berdasarkan nama...">
+        </div>
+
+        <form id="formTransaksi" action="{{ route('transaksi.store') }}" method="POST">
+            @csrf
+            <div class="produk-grid" id="produkGrid">
+                @foreach($produk as $p)
+                    <div class="produk-card" data-harga="{{ $p->harga }}" data-nama="{{ strtolower($p->nama_produk) }}">
+                        <div class="produk-card-content">
+                            <img src="{{ asset('uploads/produk/'.($p->gambar ?? 'default.png')) }}" alt="{{ $p->nama_produk }}">
+                            <div class="produk-info">
+                                <label class="produk-checkbox-label">
+                                    <input type="checkbox" name="produk_id[]" value="{{ $p->id_produk }}">
+                                    <strong>{{ $p->nama_produk }}</strong>
+                                </label>
+                                <p class="produk-price">Rp {{ number_format($p->harga, 0, ',', '.') }}</p>
+                                <div class="produk-qty-section">
+                                    <label>Qty:</label>
+                                    <input type="number" name="qty[{{ $p->id_produk }}]" class="qty" min="0" value="0">
+                                </div>
+                            </div>
+                        </div>
                         <div class="subtotal">Subtotal: Rp 0</div>
                     </div>
-                </div>
-            @endforeach
-        </div>
+                @endforeach
+            </div>
 
-        <div class="summary">
-            <p>Total: Rp <span id="total">0</span></p>
-        </div>
+            <div class="summary">
+                <p>💰 Total: Rp <span id="total">0</span></p>
+            </div>
 
-        <div style="text-align:center; margin-top:20px;">
-            <button type="submit" class="btn-transaksi">💾 Simpan Transaksi</button>
-        </div>
-    </form>
-
-    <div style="text-align:center;">
-        <a href="{{ route('dashboard') }}" class="back-link">⬅ Kembali ke Dashboard</a>
+            <div class="form-actions">
+                <button type="submit" class="btn-transaksi">💾 Simpan Transaksi</button>
+                <a href="{{ route('dashboard') }}" class="back-link">⬅ Kembali ke Dashboard</a>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -298,7 +435,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('formTransaksi').addEventListener('submit', e => {
         const ada = Array.from(checkboxes).some(cb => cb.checked);
         if (!ada) {
-            alert('Pilih minimal satu produk!');
+            alert('⚠️ Pilih minimal satu produk!');
             e.preventDefault();
         }
     });

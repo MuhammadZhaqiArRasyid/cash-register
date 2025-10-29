@@ -3,119 +3,235 @@
 
 @section('content')
 <style>
-    body {
+    /* ================================================
+       EDIT PRODUK PAGE — Clean & Modern
+       ================================================ */
+
+    body.edit-produk-page {
         font-family: "Poppins", Arial, sans-serif;
-        background: #f8f9fa;
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
         margin: 0;
+        min-height: 100vh;
     }
 
-    .form-container {
-        max-width: 500px;
-        margin: 80px auto;
-        background: white;
-        padding: 25px;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    .edit-produk-container {
+        max-width: 550px;
+        margin: 3rem auto;
+        background: #ffffff;
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     }
 
-    h2 {
+    .edit-produk-header {
         text-align: center;
-        color: #1a202c;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 3px solid #8b5cf6;
     }
 
-    form label {
-        font-weight: bold;
-        display: block;
-        margin-top: 12px;
-        color: #333;
+    .edit-produk-header h2 {
+        font-size: 1.8rem;
+        color: #1e293b;
+        margin: 0;
+        font-weight: 700;
     }
 
-    form input, form select {
+    .edit-produk-header p {
+        color: #64748b;
+        font-size: 0.95rem;
+        margin-top: 0.5rem;
+    }
+
+    .edit-produk-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group label {
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+    }
+
+    .form-group input,
+    .form-group select {
         width: 100%;
-        padding: 10px;
-        margin-top: 5px;
-        border: 1px solid #ccc;
-        border-radius: 6px;
-        font-size: 15px;
+        padding: 0.75rem 1rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        font-size: 0.95rem;
+        font-family: "Poppins", Arial, sans-serif;
+        transition: all 0.2s ease;
+        background: #f8fafc;
     }
 
-    form button {
-        background: #27ae60;
+    .form-group input:focus,
+    .form-group select:focus {
+        outline: none;
+        border-color: #8b5cf6;
+        background: #ffffff;
+        box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+    }
+
+    .form-group input[type="file"] {
+        padding: 0.6rem;
+        background: #ffffff;
+        cursor: pointer;
+    }
+
+    .current-image {
+        margin-top: 0.75rem;
+        padding: 1rem;
+        background: #f8fafc;
+        border-radius: 12px;
+        text-align: center;
+    }
+
+    .current-image p {
+        color: #64748b;
+        font-size: 0.9rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .current-image img {
+        max-width: 180px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-top: 1rem;
+    }
+
+    .btn-submit {
+        background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
         color: white;
         border: none;
-        padding: 10px 20px;
-        border-radius: 8px;
-        margin-top: 20px;
+        padding: 0.9rem 1.5rem;
+        border-radius: 12px;
         cursor: pointer;
-        width: 100%;
-        font-size: 16px;
-        transition: 0.2s;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
     }
 
-    form button:hover {
-        background: #1e874b;
+    .btn-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
     }
 
-    .back-link {
-        display: inline-block;
-        margin-top: 20px;
+    .btn-back {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
         text-decoration: none;
-        color: #e67e22;
-        font-weight: bold;
+        color: #64748b;
+        font-weight: 500;
+        padding: 0.75rem;
+        border-radius: 12px;
+        transition: all 0.2s ease;
+        background: #f8fafc;
     }
 
-    .back-link:hover {
-        text-decoration: underline;
+    .btn-back:hover {
+        background: #e2e8f0;
+        color: #1e293b;
     }
 
     /* Responsif */
     @media (max-width: 600px) {
-        .form-container {
-            margin: 40px 15px;
-            padding: 20px;
+        .edit-produk-container {
+            margin: 2rem 1rem;
+            padding: 1.5rem;
         }
 
-        h2 {
-            font-size: 20px;
+        .edit-produk-header h2 {
+            font-size: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            font-size: 0.9rem;
+        }
+
+        .current-image img {
+            max-width: 150px;
         }
     }
 </style>
 
-<div class="form-container">
-    <h2>✏️ Edit Produk</h2>
+<body class="edit-produk-page">
+    <div class="edit-produk-container">
+        <div class="edit-produk-header">
+            <h2>✏️ Edit Produk</h2>
+            <p>Perbarui informasi produk Anda</p>
+        </div>
 
-    <form action="{{ route('produk.update', $produk->id_produk) }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        @method('PUT')
+        <form action="{{ route('produk.update', $produk->id_produk) }}" method="POST" enctype="multipart/form-data" class="edit-produk-form">
+            @csrf
+            @method('PUT')
 
-        <label for="nama_produk">Nama Produk</label>
-        <input type="text" name="nama_produk" id="nama_produk" value="{{ $produk->nama_produk }}" required>
-
-        <label for="kategori">Kategori</label>
-        <select name="kategori" id="kategori" required>
-            <option value="makanan" {{ $produk->kategori == 'makanan' ? 'selected' : '' }}>🍔 Makanan</option>
-            <option value="minuman" {{ $produk->kategori == 'minuman' ? 'selected' : '' }}>🥤 Minuman</option>
-        </select>
-
-        <label for="harga">Harga</label>
-        <input type="number" name="harga" id="harga" value="{{ $produk->harga }}" required>
-
-        <label for="pajak" class="form-label">Pajak (%)</label>
-        <input type="number" name="pajak" id="pajak" class="form-control" step="0.01" value="{{ $produk->pajak }}">
-
-        <label for="gambar">Gambar Produk</label>
-        <input type="file" name="gambar" id="gambar" accept="image/*">
-
-        @if($produk->gambar)
-            <div style="margin-top:10px;">
-                <p>Gambar saat ini:</p>
-                <img src="{{ asset('uploads/produk/'.$produk->gambar) }}" width="150" style="border-radius:8px;">
+            <div class="form-group">
+                <label for="nama_produk">📦 Nama Produk</label>
+                <input type="text" name="nama_produk" id="nama_produk" value="{{ $produk->nama_produk }}" required placeholder="Masukkan nama produk">
             </div>
-        @endif
 
-        <button type="submit">💾 Update Produk</button>
-    </form>
+            <div class="form-group">
+                <label for="kategori">🏷️ Kategori</label>
+                <select name="kategori" id="kategori" required>
+                    <option value="makanan" {{ $produk->kategori == 'makanan' ? 'selected' : '' }}>🍔 Makanan</option>
+                    <option value="minuman" {{ $produk->kategori == 'minuman' ? 'selected' : '' }}>🥤 Minuman</option>
+                </select>
+            </div>
 
-    <a href="{{ route('produk.index') }}" class="back-link">⬅ Kembali ke Daftar Produk</a>
-</div>
+            <div class="form-group">
+                <label for="harga">💰 Harga</label>
+                <input type="number" name="harga" id="harga" value="{{ $produk->harga }}" required placeholder="Masukkan harga">
+            </div>
+
+            <div class="form-group">
+                <label for="pajak">📊 Pajak (%)</label>
+                <input type="number" name="pajak" id="pajak" step="0.01" value="{{ $produk->pajak }}" placeholder="Masukkan persentase pajak">
+            </div>
+
+            <div class="form-group">
+                <label for="gambar">📷 Gambar Produk</label>
+                <input type="file" name="gambar" id="gambar" accept="image/*">
+
+                @if($produk->gambar)
+                    <div class="current-image">
+                        <p>Gambar saat ini:</p>
+                        <img src="{{ asset('uploads/produk/'.$produk->gambar) }}" alt="{{ $produk->nama_produk }}">
+                    </div>
+                @endif
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-submit">
+                    💾 Update Produk
+                </button>
+                <a href="{{ route('produk.index') }}" class="btn-back">
+                    ⬅ Kembali ke Daftar Produk
+                </a>
+            </div>
+        </form>
+    </div>
+</body>
 @endsection

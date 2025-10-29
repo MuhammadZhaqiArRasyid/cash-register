@@ -3,270 +3,335 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard Kasir - Cash Register</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 /* ================================================
-   DASHBOARD STYLE — Clean & Professional
+   DASHBOARD ONLY STYLE — Clean & Modern
    ================================================ */
 
-/* Reset dasar */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: "Poppins", Arial, sans-serif;
-    background-color: #f5f7fa;
-    color: #333;
-    line-height: 1.6;
-    min-height: 100vh;
+/* Hanya untuk body dengan class dashboard */
+body.dashboard-page {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
 }
 
 /* ================================================
-   NAVBAR
+   DASHBOARD CONTAINER
    ================================================ */
-.navbar {
-    background-color: #ffffff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-
-.navbar h2 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #1d4ed8;
-}
-
-/* ================================================
-   CONTAINER
-   ================================================ */
-.container {
+.dashboard-container {
     max-width: 1200px;
     margin: 2rem auto;
     padding: 0 1.5rem;
 }
 
-.container > h2 {
-    font-size: 1.75rem;
+.dashboard-container > h2 {
+    font-size: 1.85rem;
     font-weight: 700;
-    color: #222;
-    margin-bottom: 0.25rem;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.container > p {
-    color: #555;
+.dashboard-container > p {
+    color: #64748b;
     margin-bottom: 2rem;
+    font-size: 1.05rem;
 }
 
 /* ================================================
-   SUMMARY CARDS
+   SUMMARY CARDS - Clean Design
    ================================================ */
-.summary {
+.dashboard-summary {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.25rem;
-    margin-bottom: 2rem;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
 }
 
-.card {
-    background-color: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+.dashboard-card {
+    background: #ffffff;
+    border: none;
+    border-radius: 20px;
+    padding: 1.75rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+.dashboard-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
 }
 
-.card h3 {
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.dashboard-card-icon {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 1rem;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: #fff;
+}
+
+.dashboard-card h3 {
     font-size: 0.9rem;
-    color: #666;
-    margin-bottom: 0.5rem;
+    color: #64748b;
+    margin-bottom: 0.75rem;
     text-transform: uppercase;
     font-weight: 600;
     letter-spacing: 0.5px;
 }
 
-.card p {
-    font-size: 1.75rem;
+.dashboard-card p {
+    font-size: 1.9rem;
     font-weight: 700;
-    color: #1d4ed8;
     margin: 0;
 }
 
-/* Warna netral tiap card */
-.card-green p {
-    color: #059669;
+/* Warna khusus untuk tiap card */
+.dashboard-card-green::before {
+    background: linear-gradient(90deg, #10b981 0%, #34d399 100%);
 }
-.card-blue p {
-    color: #2563eb;
+
+.dashboard-card-green .dashboard-card-icon {
+    background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
 }
-.card-yellow p {
-    color: #d97706;
+
+.dashboard-card-green p {
+    color: #10b981;
+}
+
+.dashboard-card-blue::before {
+    background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+}
+
+.dashboard-card-blue .dashboard-card-icon {
+    background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+}
+
+.dashboard-card-blue p {
+    color: #3b82f6;
+}
+
+.dashboard-card-orange::before {
+    background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%);
+}
+
+.dashboard-card-orange .dashboard-card-icon {
+    background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+}
+
+.dashboard-card-orange p {
+    color: #f59e0b;
+}
+
+.dashboard-card-purple::before {
+    background: linear-gradient(90deg, #8b5cf6 0%, #a78bfa 100%);
+}
+
+.dashboard-card-purple .dashboard-card-icon {
+    background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+}
+
+.dashboard-card-purple p {
+    color: #8b5cf6;
 }
 
 /* ================================================
-   TABLE
+   TABLE - Clean Design
    ================================================ */
-h3 {
-    font-size: 1.25rem;
+.dashboard-table-title {
+    font-size: 1.35rem;
     font-weight: 600;
-    color: #222;
-    margin-bottom: 1rem;
-    text-align: center; /* ✅ Judul tabel di tengah */
+    color: #1e293b;
+    margin-bottom: 1.25rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
-.table-container {
-    background-color: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    overflow-x: auto;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+.dashboard-table-container {
+    background: #ffffff;
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     margin: 0 auto;
-    width: 95%; /* ✅ Table sedikit lebih besar dan tengah */
+    width: 95%;
     max-width: 1000px;
 }
 
-table {
+.dashboard-table-container table {
     width: 100%;
     border-collapse: collapse;
 }
 
-thead {
-    background-color: #2563eb;
+.dashboard-table-container thead {
+    background: linear-gradient(90deg, #1e293b 0%, #334155 100%);
     color: #fff;
 }
 
-th, td {
-    padding: 1rem;
-    text-align: center; /* ✅ Konten tengah */
-    border-bottom: 1px solid #e5e7eb;
+.dashboard-table-container th,
+.dashboard-table-container td {
+    padding: 1.25rem 1rem;
+    text-align: center;
+    border-bottom: 1px solid #e2e8f0;
     font-size: 1rem;
 }
 
-tbody tr:nth-child(even) {
-    background-color: #f9fafb;
+.dashboard-table-container th {
+    font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
-tbody tr:hover {
-    background-color: #eef2ff;
+.dashboard-table-container tbody tr:nth-child(even) {
+    background-color: #f8fafc;
 }
 
-td strong {
-    color: #111;
+.dashboard-table-container tbody tr:hover {
+    background-color: #f1f5f9;
+    transition: background-color 0.2s ease;
 }
 
-.no-data {
+.dashboard-table-container td strong {
+    color: #1e293b;
+}
+
+.dashboard-table-container .no-data {
     text-align: center;
-    padding: 2rem 1rem;
-    color: #777;
+    padding: 2.5rem 1rem;
+    color: #94a3b8;
     font-style: italic;
-}
-
-/* ================================================
-   FOOTER
-   ================================================ */
-.footer {
-    text-align: center;
-    padding: 2rem;
-    font-size: 0.9rem;
-    color: #666;
-    border-top: 1px solid #e5e7eb;
-    margin-top: 2rem;
 }
 
 /* ================================================
    RESPONSIVE
    ================================================ */
 @media (max-width: 768px) {
-    .navbar {
-        padding: 0.75rem 1rem;
-    }
-
-    .container {
+    .dashboard-container {
         padding: 0 1rem;
     }
+    
+    .dashboard-container > h2 {
+        font-size: 1.5rem;
+    }
 
-    .summary {
+    .dashboard-summary {
         grid-template-columns: 1fr;
+        gap: 1rem;
     }
 
-    .card {
-        text-align: center;
+    .dashboard-card {
+        padding: 1.5rem;
     }
 
-    .table-container {
+    .dashboard-card-icon {
+        width: 55px;
+        height: 55px;
+        font-size: 1.5rem;
+    }
+
+    .dashboard-table-container {
         width: 100%;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
     }
 
-    th, td {
-        padding: 0.8rem;
+    .dashboard-table-container th,
+    .dashboard-table-container td {
+        padding: 1rem 0.75rem;
         font-size: 0.9rem;
     }
+}
 
-    h2 {
+@media (max-width: 480px) {
+    .dashboard-container > h2 {
         font-size: 1.3rem;
         text-align: center;
+        flex-direction: column;
+        gap: 0.25rem;
     }
-
-    h3 {
-        font-size: 1rem;
+    
+    .dashboard-card h3 {
+        font-size: 0.85rem;
+    }
+    
+    .dashboard-card p {
+        font-size: 1.6rem;
+    }
+    
+    .dashboard-table-title {
+        font-size: 1.1rem;
     }
 }
 </style>
 
 </head>
-<body>
+<body class="dashboard-page">
 
 @include('layouts.header')
 @section('title', 'Dashboard')
 
-<div class="container">
-    <h2>Selamat datang, {{ Auth::user()->name }} 👋</h2>
+<div class="dashboard-container">
+    <h2><i class="fas fa-user-circle"></i> Selamat datang, {{ Auth::user()->name }} 👋</h2>
     <p>Berikut ringkasan penjualan hari ini:</p>
 
     <!-- 🔹 Ringkasan Penjualan -->
-    <div class="summary">
-        <div class="card card-green">
-            <h3>💰 Pendapatan</h3>
+    <div class="dashboard-summary">
+        <div class="dashboard-card dashboard-card-green">
+            <div class="dashboard-card-icon">
+                <i class="fas fa-money-bill-wave"></i>
+            </div>
+            <h3>Pendapatan</h3>
             <p>Rp {{ number_format($totalPendapatan, 0, ',', '.') }}</p>
         </div>
 
-        <div class="card card-blue">
-            <h3>🧾 Transaksi</h3>
+        <div class="dashboard-card dashboard-card-blue">
+            <div class="dashboard-card-icon">
+                <i class="fas fa-receipt"></i>
+            </div>
+            <h3>Transaksi</h3>
             <p>{{ $totalTransaksi }}</p>
         </div>
 
-        <div class="card card-yellow">
-            <h3>🍽️ Menu Terjual</h3>
+        <div class="dashboard-card dashboard-card-orange">
+            <div class="dashboard-card-icon">
+                <i class="fas fa-utensils"></i>
+            </div>
+            <h3>Menu Terjual</h3>
             <p>{{ $totalMenuTerjual }}</p>
         </div>
 
-        <div class="card card-purple">
-            <h3>💸 Pajak Dipungut</h3>
+        <div class="dashboard-card dashboard-card-purple">
+            <div class="dashboard-card-icon">
+                <i class="fas fa-file-invoice-dollar"></i>
+            </div>
+            <h3>Pajak Dipungut</h3>
             <p>Rp {{ number_format($totalPajak, 0, ',', '.') }}</p>
         </div>
     </div>
 
     <!-- 🔹 Tabel Transaksi -->
-    <h3>🕓 Transaksi Terbaru</h3>
-    <div class="table-container">
+    <h3 class="dashboard-table-title"><i class="fas fa-clock"></i> Transaksi Terbaru</h3>
+    <div class="dashboard-table-container">
         <table>
             <thead>
                 <tr>

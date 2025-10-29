@@ -57,3 +57,5 @@ Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword'
 
 Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
 Route::get('/laporan/export', [LaporanController::class, 'export'])->name('laporan.export');
+
+Route::get('/laporan/export-pdf', [LaporanController::class, 'exportPDF'])->name('laporan.exportPDF');
